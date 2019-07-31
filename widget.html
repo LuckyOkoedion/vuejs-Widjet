@@ -1,0 +1,116 @@
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://dev.opiniion.com/vue-custom-element.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/document-register-element/1.4.1/document-register-element.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
+
+
+<script>
+
+  Vue.customElement('test-widget', {
+
+    // Some dummy data 
+    data() {
+      return {
+        customers: [{"id":1,"first_name":"Darcee","last_name":"Papis","email":"dpapis0@arizona.edu"},
+{"id":2,"first_name":"Annabell","last_name":"Thurman","email":"athurman1@booking.com"},
+{"id":3,"first_name":"Ingelbert","last_name":"Magson","email":"imagson2@gnu.org"},
+{"id":4,"first_name":"Todd","last_name":"Demaine","email":"tdemaine3@cdbaby.com"},
+{"id":5,"first_name":"Hanan","last_name":"Inge","email":"hinge4@toplist.cz"},
+{"id":6,"first_name":"Danika","last_name":"Neames","email":"dneames5@youku.com"},
+{"id":7,"first_name":"Marlie","last_name":"Cowpe","email":"mcowpe6@mozilla.org"},
+{"id":8,"first_name":"Garek","last_name":"Farragher","email":"gfarragher7@skype.com"},
+{"id":9,"first_name":"Angel","last_name":"Dixsee","email":"adixsee8@cdbaby.com"},
+{"id":10,"first_name":"Adelaide","last_name":"Sunter","email":"asunter9@amazon.co.uk"},
+{"id":11,"first_name":"Barr","last_name":"Berkeley","email":"bberkeleya@npr.org"},
+{"id":12,"first_name":"Finley","last_name":"Sign","email":"fsignb@geocities.jp"},
+{"id":13,"first_name":"Hall","last_name":"Denerley","email":"hdenerleyc@nba.com"},
+{"id":14,"first_name":"Giff","last_name":"Kiddell","email":"gkiddelld@apple.com"},
+{"id":15,"first_name":"Lira","last_name":"Cruwys","email":"lcruwyse@godaddy.com"},
+{"id":16,"first_name":"Emmett","last_name":"Glancey","email":"eglanceyf@theglobeandmail.com"},
+{"id":17,"first_name":"Jeralee","last_name":"Samwell","email":"jsamwellg@fotki.com"},
+{"id":18,"first_name":"Wayland","last_name":"Shieber","email":"wshieberh@europa.eu"},
+{"id":19,"first_name":"Gannie","last_name":"Silverston","email":"gsilverstoni@naver.com"},
+{"id":20,"first_name":"Mariquilla","last_name":"Hawford","email":"mhawfordj@rediff.com"},
+{"id":21,"first_name":"Marsiella","last_name":"Jenoure","email":"mjenourek@homestead.com"},
+{"id":22,"first_name":"Emiline","last_name":"Gatherell","email":"egatherelll@paginegialle.it"},
+{"id":23,"first_name":"Quentin","last_name":"Loach","email":"qloachm@washingtonpost.com"},
+{"id":24,"first_name":"Clarie","last_name":"Faier","email":"cfaiern@constantcontact.com"},
+{"id":25,"first_name":"Elane","last_name":"Grigolashvill","email":"egrigolashvillo@51.la"},
+{"id":26,"first_name":"Minni","last_name":"Castiglio","email":"mcastigliop@ibm.com"},
+{"id":27,"first_name":"Gina","last_name":"Breedy","email":"gbreedyq@columbia.edu"},
+{"id":28,"first_name":"Dyan","last_name":"Conville","email":"dconviller@umich.edu"},
+{"id":29,"first_name":"Clare","last_name":"Down","email":"cdowns@mtv.com"},
+{"id":30,"first_name":"Dominique","last_name":"Mattiazzi","email":"dmattiazzit@elpais.com"}]
+      }
+    },
+    methods: {
+      removeElement: function (customer) {
+            this.customers.splice(this.customers.indexOf(customer), 1);
+                }
+  
+    },
+    mounted: () => {
+    // jQuery code
+      $(document).ready(function() {
+      $('#example').DataTable();
+      } );
+  
+    },
+    template: `
+
+    <div class="container">
+
+        <table id="example" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="customer in customers" :key="customer.id">
+                <td>{{customer.first_name}}</td>
+                <td>{{customer.last_name}}</td>
+                <td>{{customer.email}}</td>
+                <td>
+                   <div>
+                        <button type="button" class="btn btn-default" v-on:click="removeElement(customer)"><i class="fa fa-trash"></i></button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+        </tfoot>
+    </table>
+
+
+    </div>
+
+    `
+  });
+</script>
+
+<style>
+
+  .container {
+    margin-top: 20px;
+  }
+
+</style>
+
+<html>
+  <test-widget></test-widget>
+</html>
